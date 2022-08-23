@@ -453,6 +453,7 @@ body {
 .navigation-full-page.active .navigation-menu-links {
   opacity: 1;
   visibility: visible;
+  transition-duration: .7s;
   transition-delay: .65s;
   transform: translateY(0);
 }
