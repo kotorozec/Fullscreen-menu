@@ -1,0 +1,31 @@
+@use "sass:map";
+
+$colors: (
+        primary-gray: #222831,
+        secondary-gray:#f2f2f2,
+        fonts-gray:#393e46,
+        primary-blue:#0e5f76,
+        secondary-blue:#083d56,
+        third-blue:#0c2233,
+        primary-yellow:#ffc93c,
+        secondary-yellow:#ff9a3c,
+        primary-oragne:#ff6f3c,
+);
+
+@mixin tablet {
+  @media only screen and (min-width: 768px) {
+    @content
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 992px) {
+    @content
+  }
+}
+
+@mixin flex($display, $content, $items) {
+  display: $display;
+  justify-content: $content;
+  align-items: $items;
+}

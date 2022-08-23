@@ -1,0 +1,119 @@
+@import "variable";
+
+.toggle {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-content: center;
+  row-gap: 5px;
+  position: fixed;
+  top: 40px;
+  right: 30px;
+  width: 45px;
+  height: 45px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.5s ease-in-out;
+  z-index: 10;
+
+  span {
+    width: 25px;
+    height: 4px;
+    background-color: map-get($colors, fonts-gray);
+    border-radius: 100vh;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &.active {
+    background-color: map-get($colors,secondary-gray);
+    &:hover {
+      background-color: map-get($colors, fonts-gray);
+    }
+    span {
+      &:first-child {
+        transform: translateY(150%);
+      }
+
+      &:nth-child(2) {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+
+      &:last-child {
+        transform: translateY(-150%);
+      }
+    }
+  }
+
+  &:hover {
+    background-color: map-get($colors, primary-yellow);
+
+    & span {
+      background-color: map-get($colors, secondary-gray);
+    }
+  }
+}
+
+.navigation-menu-links {
+  @include flex(flex,start,center);
+  flex-direction: column;
+  row-gap:50px;
+  height: 70%;
+  transform: translateY(-100%);
+  visibility: hidden;
+  transition: 0.5s ease-in;
+  opacity: 0;
+  transition-delay: 0s;
+  color: map-get($colors, primary-gray);
+  z-index: 1;
+  @include desktop {
+    height: 100%;
+    @include flex(flex,space-evenly,center);
+    row-gap: 0;
+  }
+  a {
+    font-size:3em;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    color:map-get($colors,fonts-gray);
+  }
+}
+
+.navigation-full-page {
+  @include flex(flex, center, center);
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  min-height: 100vh;
+  visibility: hidden;
+  span {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    height: 100%;
+    width: 20%;
+    background-color: map-get($colors, primary-yellow);
+    //border: 1px solid map-get($colors, secondary-gray);
+    transition: 0.25s;
+    @for $i from 1 through 5 {
+      &:nth-of-type(#{$i}) {
+        left: calc(20% * $i);
+        transition-delay: 0.25s * $i;
+      }
+    }
+  }
+  &.active {
+    visibility: visible;
+    .navigation-menu-links {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0.65s;
+    }
+    span {
+      top:0;
+    }
+  }
+}
+
